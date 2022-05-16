@@ -25,6 +25,12 @@ functions:
       - httpApi:
           path: /mutant
           method: post
+  getStats:
+    handler: src/getStats.getStats
+    events:
+      - httpApi:
+          path: /stats
+          method: get
 
 resources:
   Resources:
