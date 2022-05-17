@@ -4,7 +4,7 @@ async function getStats(event) {
   try {
     const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-    const count_mutant_dna = await dynamodb
+    let count_mutant_dna_scan = await dynamodb
       .scan({
         TableName: "DnaTable",
         FilterExpression: "isMutant = :v1",
@@ -15,7 +15,7 @@ async function getStats(event) {
       })
       .promise();
 
-    const count_human_dna = await dynamodb
+    let count_human_dna_scan = await dynamodb
       .scan({
         TableName: "DnaTable",
         FilterExpression: "isMutant = :v1",
@@ -26,7 +26,9 @@ async function getStats(event) {
       })
       .promise();
 
-    const ratio = count_mutant_dna.Count / count_human_dna.Count;
+    const count_mutant_dna = count_mutant_dna_scan.Count;
+    const count_human_dna = count_human_dna_scan.Count;
+    const ratio = count_mutant_dna / count_human_dna;
 
     const response = {
       count_mutant_dna,
@@ -36,7 +38,7 @@ async function getStats(event) {
 
     return {
       status: 200,
-      body: JSON.stringify(response),
+      body: response,
     };
   } catch (error) {
     console.log(error);
