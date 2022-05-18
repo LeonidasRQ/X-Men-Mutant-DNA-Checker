@@ -32,13 +32,13 @@ custom:
 
 functions:
   checkDna:
-    handler: src/endpoints/checkDna.handler
+    handler: lambdas/endpoints/checkDna.handler
     events:
       - httpApi:
           path: /mutant
           method: post
   getStats:
-    handler: src/endpoints/getStats.handler
+    handler: lambdas/endpoints/getStats.handler
     events:
       - httpApi:
           path: /stats

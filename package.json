@@ -3,7 +3,7 @@
   "description": "This project was created for helping Magneto to recruit new mutants for fighting the X-men. It will allow Magneto the analyze the candidate's DNA for checking if its a mutant of not.",
   "version": "1.0.0",
   "scripts": {
-    "deploy": "sls offline start",
+    "start:dev": "sls offline start",
     "test": "jest"
   },
   "repository": {
