@@ -15,7 +15,7 @@ exports.handler = async (event) => {
   });
 
   if (!count_human_dna || !count_mutant_dna) {
-    return Responses._404({ message: "Failed to count dna chains" });
+    return Responses._404({ message: "No dna chains to count on database" });
   }
 
   const ratio = count_mutant_dna / count_human_dna;

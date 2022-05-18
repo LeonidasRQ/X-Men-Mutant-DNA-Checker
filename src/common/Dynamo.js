@@ -9,6 +9,14 @@ if (process.env.IS_OFFLINE) {
   };
 }
 
+if (process.env.MOCK_DYNAMODB_ENDPOINT) {
+  options = {
+    endpoint: "http://localhost:8000",
+    region: "local",
+    sslEnabled: false,
+  };
+}
+
 const documentClient = new AWS.DynamoDB.DocumentClient(options);
 
 const Dynamo = {
