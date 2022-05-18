@@ -11,7 +11,7 @@ if (process.env.IS_OFFLINE) {
 
 if (process.env.MOCK_DYNAMODB_ENDPOINT) {
   options = {
-    endpoint: "http://localhost:8000",
+    endpoint: process.env.MOCK_DYNAMODB_ENDPOINT,
     region: "local",
     sslEnabled: false,
   };
@@ -56,7 +56,7 @@ const Dynamo = {
 
     if (!res) {
       throw Error(
-        `There was an error inserting ID of ${data.ID} in table ${TableName}`
+        `There was an error inserting data of ${data} in table ${TableName}`
       );
     }
 

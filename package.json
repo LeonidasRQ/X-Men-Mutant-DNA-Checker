@@ -1,11 +1,29 @@
 {
+  "name": "aws-lambda-xmen-mutant-checker",
+  "description": "This project was created for helping Magneto to recruit new mutants for fighting the X-men. It will allow Magneto the analyze the candidate's DNA for checking if its a mutant of not.",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "sls offline start",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonidasRQ/X-Men-Mutant-DNA-Checker.git"
+  },
+  "author": "Leonidas Ramirez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonidasRQ/X-Men-Mutant-DNA-Checker/issues"
+  },
+  "homepage": "https://github.com/LeonidasRQ/X-Men-Mutant-DNA-Checker#readme",
   "dependencies": {
-    "aws-sdk": "^2.1135.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "aws-sdk": "^2.1137.0",
     "jest": "^28.1.0",
     "jest-dynalite": "^3.5.1",
+    "serverless": "^3.17.0",
     "serverless-dynamodb-local": "^0.2.40",
     "serverless-offline": "^8.8.0"
   }

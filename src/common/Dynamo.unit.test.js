@@ -10,27 +10,22 @@ test("Dynamo has get and write", () => {
 });
 
 const validTableName = "DnaTable";
+const data = { name: "john" };
 
-const data = {
-  dnaChain: ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"],
-};
+test("Dynamo write works", async () => {
+  try {
+    const res = await Dynamo.write(data, validTableName);
+    expect(res).toBe(data);
+  } catch (error) {
+    console.log("Error in dynamo write test", error);
+  }
+});
 
-// test("Dynamo write works", async () => {
-//   expect.assertions(1);
-//   try {
-//     const res = await Dynamo.write(data, validTableName);
-//     expect(res).toBe(res);
-//   } catch (error) {
-//     console.log("Error in dynamo write test", error);
-//   }
-// });
-
-// test("Dynamo get works", async () => {
-//   expect.assertions(1);
-//   try {
-//     const res = await Dynamo.get(validTableName, true);
-//     expect(res).toEqual(data);
-//   } catch (error) {
-//     console.log("Error in Dynamo get", error);
-//   }
-// });
+test("Dynamo get works", async () => {
+  try {
+    const res = await Dynamo.get(validTableName, true);
+    expect(res).toEqual(0);
+  } catch (error) {
+    console.log("Error in Dynamo get", error);
+  }
+});
