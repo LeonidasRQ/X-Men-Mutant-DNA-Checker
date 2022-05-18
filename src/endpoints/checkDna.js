@@ -1,5 +1,10 @@
+const Responses = require("../common/API_Responses");
+const Dynamo = require("../common/Dynamo");
+
+const tableName = process.env.tableName;
+
 const { v4 } = require("uuid");
-const AWS = require("aws-sdk");
+
 /**
  * Divides each element of the input array into another array
  * for example: ["TCAG"] would be: ["T", "C", "A", "G"]
@@ -98,40 +103,26 @@ function checkMutant(dna) {
   }
 }
 
-async function saveDnaChain(event) {
-  const dynamodb = new AWS.DynamoDB.DocumentClient();
-
+exports.handler = async (event) => {
   const id = v4();
   const { dnaChain } = JSON.parse(event.body);
-  const processeddAt = new Date();
+  const processedAt = new Date();
   const isMutant = checkMutant(dnaChain);
 
   const newDna = {
     id,
     dnaChain,
-    processeddAt,
+    processedAt,
     isMutant,
   };
 
-  await dynamodb
-    .put({
-      TableName: "DnaTable",
-      Item: newDna,
-    })
-    .promise();
+  await Dynamo.write(newDna, tableName).catch((err) => {
+    console.log("Error in DynamoDB write", err);
+    return null;
+  });
 
   if (!isMutant) {
-    return {
-      statusCode: 403,
-      body: "It´s not a mutant, get out of here!",
-    };
+    return Responses._403({ message: "It´s not a mutant, get out of here!" });
   }
-  return {
-    statusCode: 200,
-    body: "It's a mutant, come and join us!",
-  };
-}
-
-module.exports = {
-  saveDnaChain,
+  return Responses._200({ message: "It's a mutant, come and join us!" });
 };
