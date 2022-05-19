@@ -1,31 +1,19 @@
 const { processDna } = require("./processDna.util");
 const { checkDuplicates } = require("./checkDuplicates.util");
 const { checkContiguous } = require("./checkContiguous.util");
-
+const { matrixAnalyzer } = require("./matrixAnalyzer");
 /**
  * Checks if the received dna chain is mutant or not
  */
-exports.checkMutant = (dna) => {
-  const processedDna = processDna(dna);
+exports.checkMutant = (dnaChain) => {
+  // breaks down the matrix element to its subelements: ["AAAA"] => ["A", "A", "A", "A"]
+  const processedDna = processDna(dnaChain);
 
-  let leftDiagonal = [];
-  let rightDiagonal = [];
-  let verticalLine = [];
-  let horizontalLine = [];
+  // Identifies the diagonals, horizontal lines, and vertical lines of the matriz
+  const { leftDiagonal, rightDiagonal, verticalLine, horizontalLine } =
+    matrixAnalyzer(processedDna);
 
-  const dnaChainSize = processedDna.length;
-
-  for (let i = 0; i < dnaChainSize; i++) {
-    // left-bottom and right-bottom diagonal elements are pushed to its corresponding arrays
-    leftDiagonal.push(processedDna[i][i]);
-    rightDiagonal.push(processedDna[i][dnaChainSize - 1 - i]);
-    for (let j = 0; j < dnaChainSize; j++) {
-      // up-down and horizontal line elements are pushed to its corresponding arrays
-      verticalLine.push(processedDna[j][i]);
-      horizontalLine.push(processedDna[i][j]);
-    }
-  }
-
+  // Verifies if any of the arrays containing the values of the matrix diagonals has any duplicate values in it
   const leftDiagonalHasDuplicates = checkDuplicates(leftDiagonal);
   const rightDiagonalHasDuplicates = checkDuplicates(rightDiagonal);
   const upDownLineHasDuplicates = checkDuplicates(verticalLine);
@@ -37,22 +25,19 @@ exports.checkMutant = (dna) => {
     upDownLineHasDuplicates ||
     horizontalLineHasDuplicates
   ) {
+    // Verifies if any of the arrays containing the values of the matrix diagonals, HL or VL has any contiguous values in it
     const leftDiagonalHasContiguousItems = checkContiguous(leftDiagonal);
     const rightDiagonalHasContiguousItems = checkContiguous(rightDiagonal);
     const upDownLineHasContiguousItems = checkContiguous(verticalLine);
-    const HorizontalLineHasContiguousItems = checkContiguous(horizontalLine);
+    const horizontalLineHasContiguousItems = checkContiguous(horizontalLine);
 
     if (
       leftDiagonalHasContiguousItems ||
       rightDiagonalHasContiguousItems ||
       upDownLineHasContiguousItems ||
-      HorizontalLineHasContiguousItems
-    ) {
+      horizontalLineHasContiguousItems
+    )
       return true;
-    } else {
-      return false;
-    }
-  } else {
-    return false;
-  }
+    else return false;
+  } else return false;
 };
