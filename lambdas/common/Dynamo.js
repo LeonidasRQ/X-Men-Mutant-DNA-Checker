@@ -59,8 +59,6 @@ const Dynamo = {
         `There was an error inserting data of ${data} in table ${TableName}`
       );
     }
-
-    console.log(data);
     return data;
   },
 };

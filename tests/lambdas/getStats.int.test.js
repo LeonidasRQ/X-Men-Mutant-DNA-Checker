@@ -1,7 +1,6 @@
 const Dynamo = require("../../lambdas/common/Dynamo");
 const getStats = require("../../lambdas/endpoints/getStats");
 const validators = require("../testUtils/validators");
-const { dnaChains } = require("../testUtils/dnaChains");
 
 describe("Get Stats integration test", () => {
   test("It should return an API Gateway response", async () => {
