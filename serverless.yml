@@ -51,7 +51,7 @@ functions:
 
 resources:
   Resources:
-    dnaTable:
+    dnaTableCircleCi:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.tableName}
