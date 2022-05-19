@@ -3,8 +3,19 @@
 ## Table of Contents
 
 1. [Description](#description)
+   1. [Architecture Diagram](#architecture-diagram)
+   2. [Tech Stack](#tech-stack)
 2. [Consuming the API](#consuming-the-api)
+   1. [Consuming the /mutant/ endpoint](#consuming-the-mutant-endpoint)
+      1. [Getting a 200 Response](#getting-a-200-response)
+      2. [Getting a 403 Response](#getting-a-403-response)
+   2. [Consuming the /stats/ endpoint](#consuming-the-stats-endpoint)
+      1. [Getting a 200 Response](#getting-a-200-response-1)
+      2. [Getting a 404 Response](#getting-a-404-response)
+   3. [Testing the API in Postman](#testing-the-api)
 3. [Running Locally](#running-locally)
+   1. [Pre-requisites](#pre-requisites)
+   2. [Scripts](#scripts)
 
 ## Description
 
@@ -33,10 +44,12 @@ It was built upon:
 
 This serverless API exposes two API Gateway endpoints:
 
-| Endpoint | HTTP Verb | Description                                                                                | Supported Status Codes |
-| -------- | --------- | ------------------------------------------------------------------------------------------ | ---------------------- |
-| /mutant  | POST      | Checks if a DNA chain corresponds to a mutant or a human and saves a DNA chain to DynamoDB | 200, 403               |
-| /stats   | GET       | Counts the amount of mutant and human DNA chains that has been saved to our database       | 200, 404               |
+| Endpoint                                                                 | HTTP Verb | Description                                                                                | Supported Status Codes |
+| ------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------ | ---------------------- |
+| [/mutant](https://xp6wmgpr36.execute-api.sa-east-1.amazonaws.com/mutant) | POST      | Checks if a DNA chain corresponds to a mutant or a human and saves a DNA chain to DynamoDB | 200, 403               |
+| [/stats](https://xp6wmgpr36.execute-api.sa-east-1.amazonaws.com/stats)   | GET       | Counts the amount of mutant and human DNA chains that has been saved to our database       | 200, 404               |
+
+###### Note: You can directly access to the endpoints by clicking the hyperlinks in the Endpoint column above
 
 ### Consuming the /mutant/ endpoint
 
@@ -118,7 +131,7 @@ If we consume this endpoing when having no DNA chains registered in our database
 }
 ```
 
-### Testing the API
+### Testing the API in Postman
 
 If you want to go deeper and test with your own hands how this Serverless API behaves, you can try consuming it from its Postman Collection.
 
