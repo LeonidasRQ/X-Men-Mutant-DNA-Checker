@@ -7,7 +7,7 @@ provider:
   profile: leonidas
   region: sa-east-1
   environment:
-    TableName: ${self:custom.tableName}
+    tableName: ${self:custom.tableName}
   iamRoleStatements:
     - Effect: Allow
       Action: 
