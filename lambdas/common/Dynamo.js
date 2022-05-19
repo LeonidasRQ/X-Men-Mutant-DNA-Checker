@@ -35,7 +35,7 @@ const Dynamo = {
     if (!data) {
       throw Error(`There was an error fetching the data from ${TableName}`);
     }
-    console.log(data.Count);
+    console.log("Dynamo.get", data.Count);
 
     dnaCount = data.Count;
 
@@ -60,6 +60,7 @@ const Dynamo = {
       );
     }
 
+    console.log(data);
     return data;
   },
 };

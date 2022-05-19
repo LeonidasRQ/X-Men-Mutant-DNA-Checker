@@ -10,7 +10,7 @@ test("Dynamo has get and write", () => {
 });
 
 const validTableName = "DnaTableCircleCi";
-const data = { name: "john" };
+const data = { id: "123", name: "john" };
 
 test("Dynamo write works", async () => {
   try {
