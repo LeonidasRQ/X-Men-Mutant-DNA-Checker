@@ -2,7 +2,7 @@
 
 ## Description
 
-This project was created for helping Magneto to recruit new mutants for fighting the X-men. It will allow Magneto the analyze the candidate's DNA for checking if its a mutant of not.
+This project was created for helping Magneto to recruit new mutants for fighting the X-men. It will allow Magneto to analyze the candidate's DNA for checking if its a mutant of not.
 
 ![Mutant Checker API Architecture](images/mutant_checker_architecture.png)
 
