@@ -9,7 +9,7 @@ test("Dynamo has get and write", () => {
   expect(typeof Dynamo.write).toBe("function");
 });
 
-const validTableName = "DnaTable";
+const validTableName = "DnaTableCircleCi";
 const data = { name: "john" };
 
 test("Dynamo write works", async () => {

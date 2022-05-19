@@ -1,7 +1,7 @@
 module.exports = {
   tables: [
     {
-      TableName: "DnaTable",
+      TableName: "DnaTableCircleCi",
       KeySchema: [
         {
           AttributeName: "id",

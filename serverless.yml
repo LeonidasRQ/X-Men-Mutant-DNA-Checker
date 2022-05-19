@@ -4,6 +4,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  profile: leonidas
   region: sa-east-1
   environment:
     TableName: ${self:custom.tableName}
@@ -12,7 +13,7 @@ provider:
       Action: 
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:sa-east-1:693620351674:table/DnaTable
+        - arn:aws:dynamodb:sa-east-1:693620351674:table/${self:custom.tableName}
 
 plugins:
   - serverless-offline
@@ -20,7 +21,7 @@ plugins:
   - serverless-plugin-scripts
 
 custom:
-  tableName: DnaTable
+  tableName: DnaTableCircleCi
   dynamodb:
     stages:
       - dev
