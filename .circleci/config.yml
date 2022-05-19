@@ -4,7 +4,7 @@ orbs:
 jobs:
   build-and-deploy:
     docker:
-      - image: circleci/node:14.x
+      - image: circleci/node:lts
     steps:
       - checkout
       - run:
