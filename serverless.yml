@@ -17,6 +17,7 @@ provider:
 plugins:
   - serverless-offline
   - serverless-dynamodb-local
+  - serverless-plugin-scripts
 
 custom:
   tableName: DnaTable
@@ -29,6 +30,9 @@ custom:
       migrate: true
     migration:
       dir: offline/migrations
+  scripts:
+    hooks:
+      'aws:common:validate:validate': npm run test
 
 functions:
   checkDna:
