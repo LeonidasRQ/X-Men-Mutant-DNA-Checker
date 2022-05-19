@@ -20,7 +20,3 @@ workflows:
     jobs:
       - build-and-deploy:
           context: serverlessMutantCheckerProject
-          filter:
-            branches:
-              only:
-                - master
