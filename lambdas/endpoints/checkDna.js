@@ -9,13 +9,11 @@ const { v4 } = require("uuid");
 exports.handler = async (event) => {
   const id = v4();
   const { dnaChain } = JSON.parse(event.body);
-  const processedAt = new Date();
   const isMutant = checkMutant(dnaChain);
 
   const newDna = {
     id,
     dnaChain,
-    processedAt,
     isMutant,
   };
 

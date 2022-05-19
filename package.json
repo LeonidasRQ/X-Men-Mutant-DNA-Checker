@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start:dev": "sls offline start",
-    "test": "jest"
+    "test": "tableName=DnaTable jest"
   },
   "repository": {
     "type": "git",
